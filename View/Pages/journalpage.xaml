@@ -1,0 +1,48 @@
+﻿<Page x:Class="HotelApp.View.Pages.JournalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotelApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="journalpage">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="450" Width="200">
+                <StackPanel HorizontalAlignment="Center" Height="420" Width="170" Margin="0,15,0,0" Orientation="Vertical">
+                    <Button Margin="0 10 0 0" Width="150" Height="30" x:Name="JournalBack" FontSize="13" Content="Назад" Click="JournalBack_Click" ></Button>
+                    <Button Margin="0 10 0 0" Width="150" Height="30" x:Name="JournalReport" FontSize="13" Content="Отчёт по журналу" ></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="430" Width="600" Orientation="Vertical">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="10 25 10 0">
+                <TextBlock Margin="0 0 10 0" FontSize="13">Фильтр:</TextBlock>
+                <TextBox x:Name="LoginFilterTextBox" Height="20" Width="100" Margin="0 0 10 0" TextChanged="LoginFilterTextChanged"/>
+                    <ComboBox x:Name="DoJournalFilterComboBox" Margin="0 0 10 0" Height="20" Width="100" FontSize="13" SelectionChanged="DoJournalFilterSelectionChanged"/>
+                    <DatePicker x:Name="DateStartJournalFilter" Margin="0 0 10 0" Height="20" Width="100" FontSize="13"/>
+                    <DatePicker x:Name="DateEndJournalFilter" Margin="0 0 10 0" Height="20" Width="100" FontSize="13"/>
+                    <Button x:Name="JournalFilterUpdate" Height="20" Width="80" FontSize="13" Content="Обновить" Click="JournalFilterUpdate_Click"/>
+                </StackPanel>
+                <ListView x:Name="JournalListView" Margin="10 10 10 10" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding users.login}"/>
+                                <TextBlock Text="{Binding journal_datetime}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding do_table.do_type}" Grid.Column="2"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
