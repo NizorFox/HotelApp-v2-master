@@ -9,7 +9,7 @@ namespace HotelApp.Model
    
         public class Core
         {
-            public HotelBaseEntities context = new HotelBaseEntities();
+            public HotelBaseEntities1 context = new HotelBaseEntities1();
         }
     
 }

@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.CompilerServices;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace HotelApp.View.Pages
 {
@@ -93,6 +94,26 @@ namespace HotelApp.View.Pages
         {
              dofilt = Convert.ToInt32(DoJournalFilterComboBox.SelectedValue);
             FilterData();
+        }
+
+        private void JournalReport_Click(object sender, RoutedEventArgs e)
+        {
+            Excel.Application aplication = new Excel.Application();
+            aplication.Visible = true;
+            aplication.SheetsInNewWorkbook = 1;
+            Excel.Workbook workbook = aplication.Workbooks.Add(Type.Missing);
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+            worksheet.Name = "Journal";
+            //worksheet.Cells[1][1] = "Заголовок1";
+            //worksheet.Cells[2][1] = "Заголовок2";
+
+            int rowlndex = 2;
+            foreach (var item in db.context.do_table.ToList())
+            {
+                worksheet.Cells[1][rowlndex] = item.do_type;
+                worksheet.Cells[2][rowlndex] = item.id_do_table;
+            }
+            rowlndex++;
         }
     }
 }
